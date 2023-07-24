@@ -4,6 +4,8 @@
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  
+  --background-color: white;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +33,23 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.container {
+  max-width: 1248px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+button {
+  background-color: inherit;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.navbarSpace {
+  margin-top: 60px;
 }
 
 @media (prefers-color-scheme: dark) {
