@@ -1,6 +1,67 @@
 .loginForm {
   display: flex;
-  background-color: var(--background-color);
+  background-color: var(--palette-common-background);
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
   padding: 0 80px;
+
+  .sugarfansLogo {
+    width: 200px;
+  }
+
+  .welcomeYou {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--palette-primary-main);
+    text-align: center;
+    line-height: 50px;
+  }
+
+  form {
+    width: 320px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+
+    .inputWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .passwordWithAdornment input {
+      padding-right: 0;
+    }
+
+    .forgotPassword {
+      text-decoration: underline;
+      cursor: pointer;
+      color: var(--palette-primary-main);
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .divider {
+      width: 50%;
+      margin: 20px auto;
+    }
+
+    .signUpWrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      button {
+        color: var(--palette-grey-800);
+        padding: 4px 16px;
+
+        &:hover {
+          color: var(--palette-common-black);
+        }
+      }
+    }
+  }
+
 }

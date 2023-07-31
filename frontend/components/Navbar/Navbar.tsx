@@ -1,25 +1,18 @@
 import styles from './Navbar.module.scss'
 import Image from 'next/image'
-import IconButton from '../IconButton/IconButton'
+import IconButton from '@mui/material/IconButton'
 
 // Icons
+import SugarfansLogo from '@/public/sugarfans-logo'
 import LanguageIcon from '@mui/icons-material/Language'
 
 export default function Navbar() {
   return (
     <nav className={styles.navbar}>
       <div className={`${styles.wrapper} container`}>
-        <Image
-          className={styles.sugarfansLogo}
-          src="sugarfans-logo.svg"
-          width={150}
-          height={50}
-          alt="Sugarfans logo"
-          priority={true}
-          quality={100}
-        />
+        <SugarfansLogo className={styles.sugarfansLogo}/>
         <IconButton>
-          <LanguageIcon fontSize={'small'} />
+          <LanguageIcon fontSize='small'/>
         </IconButton>
       </div>
     </nav>

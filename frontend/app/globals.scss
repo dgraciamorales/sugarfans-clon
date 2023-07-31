@@ -4,14 +4,6 @@
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
-  
-  --background-color: white;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-   
-  }
 }
 
 * {
@@ -26,8 +18,8 @@ body {
   overflow-x: hidden;
 }
 
-body {
-
+input {
+  font-size: 20px;
 }
 
 a {
@@ -41,17 +33,14 @@ a {
   margin: 0 auto;
 }
 
-button {
-  background-color: inherit;
-  border: none;
-  text-decoration: none;
-  display: inline-block;
+input:-webkit-autofill { 
+  -webkit-background-clip: text;
+}
+
+svg {
+  fill: var(--palette-text-primary)
 }
 
 .navbarSpace {
   margin-top: 60px;
-}
-
-@media (prefers-color-scheme: dark) {
-
 }

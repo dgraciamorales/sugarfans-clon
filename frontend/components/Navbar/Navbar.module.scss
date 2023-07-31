@@ -1,14 +1,19 @@
 .navbar {
+  background-color: var(--palette-common-background);
   border-bottom: 1px solid rgb(224, 224, 224);
   position: fixed;
   width: 100%;
   height: 60px;
-  background-color: var(--background-color);
 
   .wrapper {
     height: 60px;
     display: flex;
     justify-content: space-between;
-    align-items: center
+    align-items: center;
+  }
+
+  .sugarfansLogo {
+    width: 150px;
+    height: 50px;
   }
 }
