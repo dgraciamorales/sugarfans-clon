@@ -35,13 +35,18 @@
       padding-right: 0;
     }
 
-    .forgotPassword {
-      text-decoration: underline;
-      cursor: pointer;
-      color: var(--palette-primary-main);
-      font-weight: 800;
-      margin-bottom: 20px;
+    .forgotPasswordWrapper {
+      display: flex;
+      
+      .forgotPassword {
+        text-decoration: underline;
+        cursor: pointer;
+        color: var(--palette-primary-main);
+        font-weight: 800;
+        margin-bottom: 20px;
+      }
     }
+
 
     .divider {
       width: 50%;

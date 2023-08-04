@@ -3,7 +3,7 @@
 import styles from './LoginForm.module.scss'
 import SugarfansLogo from '@/public/sugarfans-logo'
 import { useInternationalizationContext } from '@/contexts/internationalization'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { FocusEvent, ChangeEvent, FormEvent, useState } from 'react'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import FormHelperText from '@mui/material/FormHelperText'
@@ -14,43 +14,62 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { Typography } from '@mui/material'
 import Collapse from '@mui/material/Collapse'
 
+interface User {
+  username: string,
+  password: string,
+  [key: string]: string
+}
+
 export default function LoginForm() {
   const { t } = useInternationalizationContext()
   const [showPassword, setShowPassword] = useState(false)
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<User>({
     username: '',
     password: '',
   })
 
   const [userError, setUserError] = useState({
-    username: ' ',
-    password: ' ',
+    username: '',
+    password: '',
   })
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value, labels } = e.target
-    const fieldName = labels && labels[0] ? String(labels[0].textContent) : ''
-
-    setUser({
-      ...user,
-      [name]: value,
-    })
-
-    if (value === '') {
-      setUserError({
-        ...userError,
-        [name]: t('required_input').replace('{input}', fieldName),
-      })
-    } else {
-      setUserError({
-        ...userError,
-        [name]: ' ',
-      })
+  const errorHandling = (name: string) => {
+  
+    if (user[name] === '') {
+      setUserError(prevUserError => ({
+        ...prevUserError,
+        [name]: t('required_input').replace('{input}', t(name)),
+      }))
     }
+  }
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    
+    setUser(prevUser => ({
+      ...prevUser,
+      [name]: value,
+    }))
+
+    setUserError(prevUserError => ({
+      ...prevUserError,
+      [name]: ' '
+    }))
+    
+  }
+  
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    const { name } = e.target
+    
+    errorHandling(name)
   }
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
+
+    Object.keys(user).map(key => {
+      errorHandling(key)
+    })
   }
 
   return (
@@ -68,6 +87,7 @@ export default function LoginForm() {
               name="username"
               value={user.username}
               onChange={handleChange}
+              onBlur={handleBlur}
               label={t('username')} 
               variant="outlined"
               error={userError.username.trim() != ''}
@@ -90,6 +110,7 @@ export default function LoginForm() {
               autoComplete="off"
               value={user.password}
               onChange={handleChange}
+              onBlur={handleBlur}
               label={t('password')}
               variant="outlined"
               type={showPassword ? 'text' : 'password'}
@@ -112,9 +133,11 @@ export default function LoginForm() {
           </div>
         </div>
 
-        <Typography variant="body1" className={styles.forgotPassword}>
-          {t('forgot_password')}
-        </Typography>
+        <div className={styles.forgotPasswordWrapper}>
+          <Typography variant="body1" className={styles.forgotPassword}>
+            {t('forgot_password')}
+          </Typography>
+        </div>
 
         <Button variant="contained" type="submit">
           <Typography variant="button">{t('log_in')}</Typography>
