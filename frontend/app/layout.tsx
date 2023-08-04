@@ -2,7 +2,7 @@ import './globals.scss'
 import type { Metadata } from 'next'
 import { Nunito_Sans } from 'next/font/google'
 
-import Navbar from '@/components/Navbar/Navbar'
+import MyNavbar from '@/components/MyNavbar/MyNavbar'
 import Providers from './Providers'
 
 const inter = Nunito_Sans({ subsets: ['latin'] })
@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Navbar />
+          <MyNavbar />
           <main className="navbarSpace">{children}</main>
         </Providers>
       </body>

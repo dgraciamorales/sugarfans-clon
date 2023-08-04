@@ -1,6 +1,6 @@
 'use client'
 
-import styles from './LoginForm.module.scss'
+import styles from './MyLoginForm.module.scss'
 import SugarfansLogo from '@/public/sugarfans-logo'
 import { useInternationalizationContext } from '@/contexts/internationalization'
 import { FocusEvent, ChangeEvent, FormEvent, useState } from 'react'
@@ -20,7 +20,7 @@ interface User {
   [key: string]: string
 }
 
-export default function LoginForm() {
+export default function MyLoginForm() {
   const { t } = useInternationalizationContext()
   const [showPassword, setShowPassword] = useState(false)
   const [user, setUser] = useState<User>({

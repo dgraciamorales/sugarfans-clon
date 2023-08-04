@@ -1,6 +1,6 @@
 'use client'
 
-import LoginForm from '@/components/LoginForm/LoginForm'
+import MyLoginForm from '@/components/MyLoginForm/MyLoginForm'
 import styles from './page.module.scss'
 import { Typography } from '@mui/material'
 import { useInternationalizationContext } from '@/contexts/internationalization'
@@ -22,7 +22,7 @@ export default function Home() {
               </Typography>
             </div>
           </div>
-          <LoginForm />
+          <MyLoginForm />
         </div>
       </div>
     </main>

@@ -1,6 +1,6 @@
 'use client'
 
-import styles from './Navbar.module.scss'
+import styles from './MyNavbar.module.scss'
 import { useRouter } from 'next/navigation'
 import IconButton from '@mui/material/IconButton'
 
@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton'
 import SugarfansLogo from '@/public/sugarfans-logo'
 import LanguageIcon from '@mui/icons-material/Language'
 
-export default function Navbar() {
+export default function MyNavbar() {
   const router = useRouter()
 
   return (
