@@ -74,6 +74,11 @@ const cssTheme = extendTheme({
   },
   components: {
     MuiTextField: {
+      defaultProps: {
+        fullWidth: true,
+        variant:'outlined',
+        type: 'text'
+      },
       styleOverrides: {
         root: {
           borderWidth: '1px',
@@ -106,16 +111,18 @@ const cssTheme = extendTheme({
           '&::first-letter': {
             textTransform: 'capitalize'
           }
-
         },
       },
     },
     MuiButtonBase: {
       defaultProps: {
         disableRipple: true,
-      },
+      }
     },
     MuiButton: {
+      defaultProps: {
+        variant: 'contained',
+      },
       styleOverrides: {
         root: {
           '&': {
@@ -131,6 +138,13 @@ const cssTheme = extendTheme({
         },
       },
     },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          
+        }
+      }
+    }
   },
 })
 

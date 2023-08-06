@@ -4,7 +4,6 @@ import styles from './MyLoginForm.module.scss'
 
 import { useInternationalizationContext } from '@/contexts/internationalization'
 import { FocusEvent, ChangeEvent, FormEvent, useState } from 'react'
-import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
@@ -21,7 +20,6 @@ interface User {
 
 export default function MyLoginForm() {
   const { t } = useInternationalizationContext()
-  const [showPassword, setShowPassword] = useState(false)
   const [user, setUser] = useState<User>({
     username: '',
     password: '',
@@ -73,47 +71,33 @@ export default function MyLoginForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className={styles.inputWrapper}>
-        <MyTextField
-          fullWidth
-          id="login-username"
-          name="username"
-          value={user.username}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          label={t('username')}
-          variant="outlined"
-          error={userError.username.trim() != ''}
-          helperText={userError.username}
-          inputProps={{
-            'data-cy': 'login-username',
-          }}
-        />
-        <MyTextField
-          className={styles.passwordWithAdornment}
-          fullWidth
-          id="login-password"
-          name="password"
-          autoComplete="off"
-          value={user.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          label={t('password')}
-          variant="outlined"
-          type={showPassword ? 'text' : 'password'}
-          error={userError.password.trim() != ''}
-          helperText={userError.password}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton size="small" onClick={() => setShowPassword(!showPassword)} edge="end">
-                  {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </div>
+      <MyTextField
+        id="login-username"
+        name="username"
+        value={user.username}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        label={t('username')}
+        error={userError.username.trim() != ''}
+        helperText={userError.username}
+        inputProps={{
+          'data-cy': 'login-username',
+        }}
+      />
+      <MyTextField
+        className={styles.passwordWithAdornment}
+        id="login-password"
+        name="password"
+        autoComplete="off"
+        value={user.password}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        label={t('password')}
+        type={'password'}
+        error={userError.password.trim() != ''}
+        helperText={userError.password}
+        
+      />
 
       <div className={styles.forgotPasswordWrapper}>
         <Typography variant="body1" className={styles.forgotPassword}>
@@ -121,7 +105,7 @@ export default function MyLoginForm() {
         </Typography>
       </div>
 
-      <Button variant="contained" type="submit">
+      <Button type="submit">
         <Typography variant="button">{t('log_in')}</Typography>
       </Button>
     </form>
