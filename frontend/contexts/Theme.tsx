@@ -100,7 +100,9 @@ const cssTheme = extendTheme({
     MuiFormHelperText: {
       styleOverrides: {
         root: {
+          marginTop: '4px',
           fontSize: '13px',
+          lineHeight: '15px',
           '&::first-letter': {
             textTransform: 'capitalize'
           }

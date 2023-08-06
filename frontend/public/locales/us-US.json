@@ -7,6 +7,7 @@
   "forgot_password": "I forgot my password",
   "log_in": "Log in",
   "dont_have_account": "Don't have an account?",
+  "have_account": "Already have an account?",
   "sign_up_free": "Sign up for free",
   "required_input": "{input} is required"
 }

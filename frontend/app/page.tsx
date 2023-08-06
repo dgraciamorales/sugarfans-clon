@@ -1,9 +1,9 @@
 'use client'
 
-import MyLoginForm from '@/components/MyLoginForm/MyLoginForm'
 import styles from './page.module.scss'
 import { Typography } from '@mui/material'
 import { useInternationalizationContext } from '@/contexts/internationalization'
+import MyAuthentication from '@/components/MyAuthentication/MyAuthentication'
 
 export default function Home() {
   const { t } = useInternationalizationContext()
@@ -22,7 +22,7 @@ export default function Home() {
               </Typography>
             </div>
           </div>
-          <MyLoginForm />
+          <MyAuthentication/>
         </div>
       </div>
     </main>
