@@ -1,8 +1,12 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+
+/*
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme,
 } from '@mui/material/styles'
+*/
 
 interface contextProps {}
 
@@ -12,7 +16,7 @@ interface props {
 
 const CustomThemeContext = createContext<contextProps>({})
 
-const cssTheme = extendTheme({
+const theme = createTheme({
   typography: {
     fontFamily: 'unset',
     
@@ -41,6 +45,19 @@ const cssTheme = extendTheme({
     }
   },
 
+  palette: {
+    primary: {
+      main: '#2BC6C4'
+    },
+    secondary: {
+      main: '#B1AEB7'
+    },
+    background: {
+      default: '#FFF'
+    }
+  },
+
+  /*
   cssVarPrefix: '',
   colorSchemes: {
     light: {
@@ -74,6 +91,8 @@ const cssTheme = extendTheme({
       },
     },
   },
+  */
+
   components: {
     MuiTypography: {
       styleOverrides: {
@@ -164,11 +183,16 @@ export const CustomThemeContextProvider = ({ children }: props) => {
     return null
   }
 
-  return (
-    
-    <CssVarsProvider theme={cssTheme} defaultMode='dark'>
+  /*return (
+    <CssVarsProvider theme={cssTheme}>
       <CustomThemeContext.Provider value={{}}>{children}</CustomThemeContext.Provider>
     </CssVarsProvider>
+  )*/
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CustomThemeContext.Provider value={{}}>{children}</CustomThemeContext.Provider>
+    </ThemeProvider>
   )
 }
 

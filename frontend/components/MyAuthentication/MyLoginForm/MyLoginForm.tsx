@@ -1,12 +1,11 @@
 'use client'
 
-import styles from './MyLoginForm.module.scss'
-
 import { useInternationalizationContext } from '@/contexts/internationalization'
 import { FocusEvent, ChangeEvent, FormEvent, useState } from 'react'
 import Button from '@mui/material/Button'
 import { Typography } from '@mui/material'
 import MyTextField from '@/components/MyTextField/MyTextField'
+import { makeStyles } from 'tss-react/mui'
 
 interface User {
   username: string
@@ -20,8 +19,23 @@ interface UserError {
   [key: string]: boolean | string
 }
 
+const useStyles = makeStyles()((theme) => ({
+  forgotPasswordWrapper: {
+    display: 'flex'
+  },
+  forgotPassword: {
+    textDecoration: 'underline',
+    cursor: 'pointer',
+    color: theme.palette.primary.main,
+    fontWeight: '800',
+    marginTop: '10px',
+    marginBottom: '10px'
+  }
+}))
+
 export default function MyLoginForm() {
   const { t } = useInternationalizationContext()
+  const { classes } = useStyles()
   const [user, setUser] = useState<User>({
     username: '',
     password: '',
@@ -84,7 +98,6 @@ export default function MyLoginForm() {
       />
 
       <MyTextField
-        className={styles.passwordWithAdornment}
         id="login-password"
         name="password"
         autoComplete="off"
@@ -96,8 +109,8 @@ export default function MyLoginForm() {
         error={userError.password}
       />
 
-      <div className={styles.forgotPasswordWrapper}>
-        <Typography variant="body1" className={styles.forgotPassword}>
+      <div className={classes.forgotPasswordWrapper}>
+        <Typography variant="body1" className={classes.forgotPassword}>
           {t('forgot_password')}
         </Typography>
       </div>

@@ -1,6 +1,5 @@
 'use client'
 
-import styles from './MyRegisterForm.module.scss'
 import MyTextField from '@/components/MyTextField/MyTextField'
 import { useState, FocusEvent, ChangeEvent, FormEvent } from 'react'
 import { useInternationalizationContext } from '@/contexts/internationalization'
