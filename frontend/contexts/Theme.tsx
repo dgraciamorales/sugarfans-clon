@@ -3,7 +3,6 @@ import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme,
 } from '@mui/material/styles'
-import { red } from '@mui/material/colors'
 
 interface contextProps {}
 
@@ -69,10 +68,20 @@ const cssTheme = extendTheme({
         common: {
           background: '#23272D',
         },
+        text: {
+          
+        }
       },
     },
   },
   components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          color: 'unset'
+        }
+      }
+    },
     MuiTextField: {
       defaultProps: {
         fullWidth: true,
@@ -105,6 +114,7 @@ const cssTheme = extendTheme({
     MuiFormHelperText: {
       styleOverrides: {
         root: {
+          marginLeft: 0,
           marginTop: '4px',
           fontSize: '13px',
           lineHeight: '15px',
@@ -131,6 +141,8 @@ const cssTheme = extendTheme({
             boxShadow: 'unset',
             fontSize: '16px',
             borderRadius: '8px',
+            marginTop: '7.5px',
+            marginBottom: '7.5px'
           },
           '&:hover': {
             boxShadow: 'unset',
@@ -138,19 +150,11 @@ const cssTheme = extendTheme({
         },
       },
     },
-    MuiCheckbox: {
-      styleOverrides: {
-        root: {
-          
-        }
-      }
-    }
   },
 })
 
 export const CustomThemeContextProvider = ({ children }: props) => {
   const [mounted, setMounted] = useState(false)
-  const [theme, changeTheme] = useState()
 
   useEffect(() => {
     setMounted(true)
@@ -161,7 +165,8 @@ export const CustomThemeContextProvider = ({ children }: props) => {
   }
 
   return (
-    <CssVarsProvider theme={cssTheme}>
+    
+    <CssVarsProvider theme={cssTheme} defaultMode='dark'>
       <CustomThemeContext.Provider value={{}}>{children}</CustomThemeContext.Provider>
     </CssVarsProvider>
   )

@@ -4,7 +4,7 @@ import styles from './MyRegisterForm.module.scss'
 import MyTextField from '@/components/MyTextField/MyTextField'
 import { useState, FocusEvent, ChangeEvent, FormEvent } from 'react'
 import { useInternationalizationContext } from '@/contexts/internationalization'
-import { Button, FormControlLabel, Typography } from '@mui/material'
+import { Button, FormControlLabel, FormHelperText, Typography } from '@mui/material'
 import { Checkbox } from '@mui/material'
 
 interface User {
@@ -15,16 +15,22 @@ interface User {
   [key: string]: string | boolean | undefined
 }
 
+interface UserError {
+  username: boolean | string
+  password: boolean | string
+  [key: string]: boolean | string
+}
+
 export default function MyRegisterForm() {
   const { t } = useInternationalizationContext()
   const [user, setUser] = useState<User>({
     username: '',
     password: '',
     email: '',
-    adult: false,
+    adult: '',
   })
 
-  const [userError, setUserError] = useState<User>({
+  const [userError, setUserError] = useState<UserError>({
     username: '',
     password: '',
     email: '',
@@ -35,7 +41,7 @@ export default function MyRegisterForm() {
     if (user[name] === '') {
       setUserError((prevUserError) => ({
         ...prevUserError,
-        [name]: t('required_input').replace('{input}', t(name)),
+        [name]: t(`required_${name}`),
       }))
     }
   }
@@ -50,7 +56,7 @@ export default function MyRegisterForm() {
 
     setUserError((prevUserError) => ({
       ...prevUserError,
-      [name]: ' ',
+      [name]: '',
     }))
   }
 
@@ -62,8 +68,16 @@ export default function MyRegisterForm() {
     }
   }
 
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+
+    Object.keys(user).map((key) => {
+      errorHandling(key)
+    })
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <MyTextField
         id="register-username"
         name="username"
@@ -71,26 +85,19 @@ export default function MyRegisterForm() {
         onChange={handleChange}
         onBlur={handleBlur}
         label={t('username')}
-        error={userError.username.trim() != ''}
-        helperText={userError.username}
-        inputProps={{
-          'data-cy': 'login-username',
-        }}
+        error={userError.username}
       />
 
       <MyTextField
         id="register-password"
         name="password"
+        autoComplete="off"
         value={user.password}
         onChange={handleChange}
         onBlur={handleBlur}
         label={t('password')}
         type="password"
-        error={userError.username.trim() != ''}
-        helperText={userError.username}
-        inputProps={{
-          'data-cy': 'login-username',
-        }}
+        error={userError.password}
       />
 
       <MyTextField
@@ -100,32 +107,33 @@ export default function MyRegisterForm() {
         onChange={handleChange}
         onBlur={handleBlur}
         label={t('email')}
-        error={userError.username.trim() != ''}
-        helperText={userError.username}
-        inputProps={{
-          'data-cy': 'login-username',
-        }}
+        error={userError.email}
       />
 
-      <div>
-        <FormControlLabel
-          label={t('18_years')}
-          control={
-            <Checkbox
-              checked={!!user.adult}
-              onChange={() =>
-                setUser((prevUser) => ({
-                  ...prevUser,
-                  adult: !user.adult,
-                }))
-              }
-            />
-          }
-        />
-      </div>
+      <FormControlLabel
+        label={t('18_years')}
+        control={
+          <Checkbox
+            checked={!!user.adult}
+            onChange={() => {
+              setUser((prevUser) => ({
+                ...prevUser,
+                adult: !user.adult,
+              }))
+              
+              setUserError((prevUserError) => ({
+                ...prevUserError,
+                'adult': ''
+              }))
+            }}
+          />
+        }
+      />
 
-      <Button>
-        <Typography variant="button">Create a free account</Typography>
+      <FormHelperText error={!!userError.adult}>{userError.adult}</FormHelperText>
+
+      <Button type="submit">
+        <Typography variant="button">{t('create_account')}</Typography>
       </Button>
     </form>
   )

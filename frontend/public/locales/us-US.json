@@ -8,8 +8,12 @@
   "18_years": "I am 18 years or older",
   "forgot_password": "I forgot my password",
   "log_in": "Log in",
+  "create_account": "Create free account",
   "dont_have_account": "Don't have an account?",
   "have_account": "Already have an account?",
   "sign_up_free": "Sign up for free",
-  "required_input": "{input} is required"
+  "required_username": "Username is required",
+  "required_password": "Password is required",
+  "required_email": "Email is required",
+  "required_adult": "You must be at least 18 years old to register"
 }

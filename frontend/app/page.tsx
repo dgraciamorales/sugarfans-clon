@@ -1,9 +1,13 @@
 'use client'
 
 import styles from './page.module.scss'
-import { Typography } from '@mui/material'
+import { Typography, createTheme } from '@mui/material'
 import { useInternationalizationContext } from '@/contexts/internationalization'
 import MyAuthentication from '@/components/MyAuthentication/MyAuthentication'
+
+const style = {
+  
+}
 
 export default function Home() {
   const { t } = useInternationalizationContext()

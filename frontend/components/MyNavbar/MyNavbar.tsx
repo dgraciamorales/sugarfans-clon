@@ -15,7 +15,7 @@ export default function MyNavbar() {
     <nav className={styles.navbar}>
       <div className={`${styles.wrapper} container`}>
         <SugarfansLogo onClick={() => router.push('/')} className={styles.sugarfansLogo}/>
-        <IconButton>
+        <IconButton name='changeLanguage'>
           <LanguageIcon fontSize='small'/>
         </IconButton>
       </div>

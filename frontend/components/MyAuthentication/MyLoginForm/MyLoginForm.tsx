@@ -4,11 +4,7 @@ import styles from './MyLoginForm.module.scss'
 
 import { useInternationalizationContext } from '@/contexts/internationalization'
 import { FocusEvent, ChangeEvent, FormEvent, useState } from 'react'
-import InputAdornment from '@mui/material/InputAdornment'
 import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-import Visibility from '@mui/icons-material/Visibility'
-import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { Typography } from '@mui/material'
 import MyTextField from '@/components/MyTextField/MyTextField'
 
@@ -18,6 +14,12 @@ interface User {
   [key: string]: string
 }
 
+interface UserError {
+  username: boolean | string
+  password: boolean | string
+  [key: string]: boolean | string
+}
+
 export default function MyLoginForm() {
   const { t } = useInternationalizationContext()
   const [user, setUser] = useState<User>({
@@ -25,16 +27,16 @@ export default function MyLoginForm() {
     password: '',
   })
 
-  const [userError, setUserError] = useState<User>({
-    username: '',
-    password: '',
+  const [userError, setUserError] = useState<UserError>({
+    username: false,
+    password: false,
   })
 
   const errorHandling = (name: string) => {
     if (user[name] === '') {
       setUserError((prevUserError) => ({
         ...prevUserError,
-        [name]: t('required_input').replace('{input}', t(name)),
+        [name]: t(`required_${name}`),
       }))
     }
   }
@@ -49,14 +51,14 @@ export default function MyLoginForm() {
 
     setUserError((prevUserError) => ({
       ...prevUserError,
-      [name]: ' ',
+      [name]: '',
     }))
   }
 
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     const { name } = e.target
 
-    if (userError[name] != '') {
+    if (userError[name] === '') {
       errorHandling(name)
     }
   }
@@ -78,12 +80,9 @@ export default function MyLoginForm() {
         onChange={handleChange}
         onBlur={handleBlur}
         label={t('username')}
-        error={userError.username.trim() != ''}
-        helperText={userError.username}
-        inputProps={{
-          'data-cy': 'login-username',
-        }}
+        error={userError.username}
       />
+
       <MyTextField
         className={styles.passwordWithAdornment}
         id="login-password"
@@ -94,9 +93,7 @@ export default function MyLoginForm() {
         onBlur={handleBlur}
         label={t('password')}
         type={'password'}
-        error={userError.password.trim() != ''}
-        helperText={userError.password}
-        
+        error={userError.password}
       />
 
       <div className={styles.forgotPasswordWrapper}>
