@@ -3,8 +3,8 @@
 import { useInternationalizationContext } from '@/contexts/internationalization'
 import SugarfansLogo from '@/public/sugarfans-logo'
 import { useState } from 'react'
-import MyLoginForm from './MyLoginForm/MyLoginForm'
-import MyRegisterForm from './MyRegisterForm/MyRegisterForm'
+import MyLoginForm from './Forms/MyLoginForm'
+import MyRegisterForm from './Forms/MyRegisterForm'
 import { Typography, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 
@@ -12,7 +12,7 @@ const useStyles = makeStyles()((theme) => ({
   authenticationWrapper: {
     backgroundColor: theme.palette.background.default,
     display: 'flex',
-    padding: '0 80px'
+    padding: '0 80px',
   },
   authenticationContainer: {
     width: '320px',
@@ -20,29 +20,29 @@ const useStyles = makeStyles()((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    
+
     '.sugarfansLogo': {
       width: '200px',
     },
 
-    'form': {
+    form: {
       width: '100%',
       marginTop: '10px',
       display: 'flex',
-      flexDirection: 'column'
-    }
+      flexDirection: 'column',
+    },
   },
   welcomeYou: {
     fontSize: '24px',
     fontWeight: '800',
     color: theme.palette.primary.main,
     textAlign: 'center',
-    lineHeight: '50px'
+    lineHeight: '50px',
   },
   divider: {
     width: '50%',
     margin: '10px auto',
-    opacity: '0.6'
+    opacity: '0.6',
   },
   switchForm: {
     width: '100%',
@@ -56,10 +56,10 @@ const useStyles = makeStyles()((theme) => ({
       padding: '4px 16px',
 
       '&:hover': {
-        color: theme.palette.common.black
-      }
-    }
-  }
+        color: theme.palette.common.black,
+      },
+    },
+  },
 }))
 
 export default function MyAuthentication() {

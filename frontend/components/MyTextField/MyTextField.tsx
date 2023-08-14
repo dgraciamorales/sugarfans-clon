@@ -1,7 +1,7 @@
-import styles from './MyTextField.module.scss'
 import { ChangeEvent, useState } from 'react'
 import { FormHelperText, IconButton, InputAdornment, TextField, TextFieldProps } from '@mui/material'
 import { VisibilityOff, Visibility } from '@mui/icons-material'
+import { makeStyles } from 'tss-react/mui'
 
 interface props extends Omit<TextFieldProps, 'helperText' | 'error' | 'type'> {
   helperText?: string
@@ -11,7 +11,15 @@ interface props extends Omit<TextFieldProps, 'helperText' | 'error' | 'type'> {
   'data-cy'?: string
 }
 
+const useStyles = makeStyles()(() => ({
+  myTextField: {
+    marginTop: '5px',
+    marginBottom: '7px'
+  }
+}))
+
 export default function MyTextField({ helperText, type, error, ...rest }: props) {
+  const { classes } = useStyles()
   const { id, onChange } = rest
   const [showPassword, setShowPassword] = useState(false)
 
@@ -34,7 +42,7 @@ export default function MyTextField({ helperText, type, error, ...rest }: props)
   }
 
   return (
-    <div className={styles.myTextField}>
+    <div className={classes.myTextField}>
       <TextField
         {...rest}
         onChange={handleChange}
