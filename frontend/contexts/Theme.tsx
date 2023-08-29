@@ -1,12 +1,7 @@
+'use client'
+
 import { createContext, useContext, useEffect, useState } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-
-/*
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as extendTheme,
-} from '@mui/material/styles'
-*/
 
 interface contextProps {}
 
@@ -56,42 +51,6 @@ const theme = createTheme({
       default: '#FFF'
     }
   },
-
-  /*
-  cssVarPrefix: '',
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          main: '#2BC6C4',
-        },
-        secondary: {
-          main: '#B1AEB7',
-        },
-        common: {
-          background: '#FFF',
-        },
-      },
-    },
-
-    dark: {
-      palette: {
-        primary: {
-          main: '#2BC6C4',
-        },
-        secondary: {
-          main: '#16908F',
-        },
-        common: {
-          background: '#23272D',
-        },
-        text: {
-          
-        }
-      },
-    },
-  },
-  */
 
   components: {
     MuiTypography: {
@@ -182,12 +141,6 @@ export const CustomThemeContextProvider = ({ children }: props) => {
   if (!mounted) {
     return null
   }
-
-  /*return (
-    <CssVarsProvider theme={cssTheme}>
-      <CustomThemeContext.Provider value={{}}>{children}</CustomThemeContext.Provider>
-    </CssVarsProvider>
-  )*/
 
   return (
     <ThemeProvider theme={theme}>

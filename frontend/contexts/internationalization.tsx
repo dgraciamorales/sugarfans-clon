@@ -1,3 +1,5 @@
+'use client'
+
 import { Dispatch, SetStateAction, createContext, useContext, useState, useEffect } from 'react'
 
 interface contextProps {

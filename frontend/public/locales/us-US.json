@@ -12,8 +12,14 @@
   "dont_have_account": "Don't have an account?",
   "have_account": "Already have an account?",
   "sign_up_free": "Sign up for free",
+  "sign_up_creator": "Sign up to be a Creator",
   "required_username": "Username is required",
   "required_password": "Password is required",
   "required_email": "Email is required",
-  "required_adult": "You must be at least 18 years old to register"
+  "required_adult": "You must be at least 18 years old to register",
+  "content_protection_title": "More Security = More Freedom!",
+  "content_protection_text1": "With our advanced anti-piracy protection system, your private content will be safe from theft and we will prevent it from spreading across the network!",
+  "content_protection_text2": "The new era of model protection has arrived with our platform.",
+  "try_it": "Try it!",
+  "footer_text": "© 2023 Sugarfans, Virtual Technology Stack Inc"
 }

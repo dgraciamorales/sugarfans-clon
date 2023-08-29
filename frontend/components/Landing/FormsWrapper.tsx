@@ -1,15 +1,20 @@
 'use client'
 
-import { useInternationalizationContext } from '@/contexts/internationalization'
-import SugarfansLogo from '@/public/sugarfans-logo'
-import { useState } from 'react'
-import MyLoginForm from './Forms/MyLoginForm'
-import MyRegisterForm from './Forms/MyRegisterForm'
-import { Typography, Button } from '@mui/material'
-import { makeStyles } from 'tss-react/mui'
+import SugarfansLogo from "@/public/sugarfans-logo";
+import { Typography, Button } from "@mui/material";
+import { makeStyles } from "tss-react/mui";
+import MyLoginForm from "../Forms/MyLoginForm";
+import MyRegisterForm from "../Forms/MyRegisterForm";
+import { useInternationalizationContext } from "@/contexts/internationalization";
+import { useEffect, useState } from "react";
 
 const useStyles = makeStyles()((theme) => ({
   authenticationWrapper: {
+    [theme.breakpoints.down('lg')]: {
+      justifyContent: 'center',
+      padding: '40px 20px'
+    },
+
     backgroundColor: theme.palette.background.default,
     display: 'flex',
     padding: '0 80px',
@@ -62,10 +67,17 @@ const useStyles = makeStyles()((theme) => ({
   },
 }))
 
-export default function MyAuthentication() {
+export default function FormsWrapper({ creatorForm }: any) {
   const { t } = useInternationalizationContext()
   const { classes } = useStyles()
   const [login, setForm] = useState(true)
+
+  // This will detect if "Sign up to be a Creator" button is clicked. If it is, register form will display.
+  useEffect(() => {
+    if (creatorForm) {
+      setForm(false)
+    }
+  }, [creatorForm])
 
   return (
     <div className={classes.authenticationWrapper}>
