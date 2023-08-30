@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import IconButton from '@mui/material/IconButton'
 
 // Icons
@@ -10,6 +10,7 @@ import { makeStyles } from 'tss-react/mui'
 
 const useStyles = makeStyles()((theme) => ({
   navbar: {
+    top: 0,
     backgroundColor: theme.palette.background.default,
     borderBottom: '1px solid rgb(224, 224, 224)',
     position: 'fixed',
@@ -34,6 +35,15 @@ const useStyles = makeStyles()((theme) => ({
 export default function MyNavbar() {
   const { classes } = useStyles()
   const router = useRouter()
+  const pathname = usePathname()
+
+  // This will remove navbar from landing.
+  if (pathname === '/') {
+    document.getElementById('layout-content')?.classList.remove('navbarSpace') 
+    return null
+  } else {
+    document.getElementById('layout-content')?.classList.add('navbarSpace') 
+  }
 
   return (
     <nav className={classes.navbar}>

@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <NextAppDirEmotionCacheProvider options={{ key: "css" }}>
           <Providers>
             <MyNavbar />
-            <main className="navbarSpace">{children}</main>
+            <main id='layout-content'>{children}</main>
           </Providers>
         </NextAppDirEmotionCacheProvider>
       </body>
