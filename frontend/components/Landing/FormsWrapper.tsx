@@ -1,6 +1,7 @@
 'use client'
 
 import SugarfansLogo from "@/public/sugarfans-logo";
+import { usePathname } from 'next/navigation'
 import { Typography, Button } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import MyLoginForm from "../Forms/MyLoginForm";
@@ -14,10 +15,10 @@ const useStyles = makeStyles()((theme) => ({
       justifyContent: 'center',
       padding: '40px 20px'
     },
-
     backgroundColor: theme.palette.background.default,
     display: 'flex',
     padding: '0 80px',
+    height: '100%',
   },
   authenticationContainer: {
     width: '320px',
@@ -69,6 +70,7 @@ const useStyles = makeStyles()((theme) => ({
 
 export default function FormsWrapper({ creatorForm }: any) {
   const { t } = useInternationalizationContext()
+  const pathname = usePathname()
   const { classes } = useStyles()
   const [login, setForm] = useState(true)
 
@@ -82,7 +84,10 @@ export default function FormsWrapper({ creatorForm }: any) {
   return (
     <div className={classes.authenticationWrapper}>
       <div className={classes.authenticationContainer}>
-        <SugarfansLogo className={'sugarfansLogo'} />
+        {
+          pathname === '/' ?? 
+          <SugarfansLogo className={'sugarfansLogo'} />
+        }
 
         <Typography className={classes.welcomeYou} variant="body1">
           {login ? t('we_welcome_you') : t('sign_up_free')}
