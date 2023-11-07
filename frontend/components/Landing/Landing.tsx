@@ -9,9 +9,7 @@ import SecurityIcon from '@mui/icons-material/Security'
 import PlayCircleIcon from '@mui/icons-material/PlayCircle'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import TwitterIcon from '@mui/icons-material/Twitter'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { useEffect, useState } from 'react'
-import SugarfansLogo from '@/public/sugarfans-logo'
 
 const useStyles = makeStyles<void, "contentProtectionVideoButton">()((theme, _params, classes) => ({
   background: {
@@ -20,7 +18,7 @@ const useStyles = makeStyles<void, "contentProtectionVideoButton">()((theme, _pa
       height: '100%',
     },
     width: '100%',
-    height: '100vh',
+    height: '675px',
     backgroundColor: '#a1ccd1',
   },
   wrapper: {
@@ -32,7 +30,6 @@ const useStyles = makeStyles<void, "contentProtectionVideoButton">()((theme, _pa
     justifyContent: 'center',
     height: '100%',
     width: '100%',
-    alignItems: 'center',
   },
   headerText: {
     position: 'relative',
@@ -48,15 +45,14 @@ const useStyles = makeStyles<void, "contentProtectionVideoButton">()((theme, _pa
       margin: '0 -20px',
       transform: 'translateX(10px)',
     },
+    marginBottom: '50px',
+    marginRight: '70px',
     textAlign: 'center',
     textShadow: '0 0 20px black',
     color: 'white',
-  },
-  headerTextLogo: {
-    width: '500px',
-    filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.7))',
-    fill: 'white',
-    marginBottom: '20px'
+    position: 'absolute',
+    left: '0',
+    bottom: '0',
   },
   headerText1: {
     [theme.breakpoints.down('lg')]: {
@@ -172,19 +168,6 @@ const useStyles = makeStyles<void, "contentProtectionVideoButton">()((theme, _pa
   social: {
     display: 'flex',
     gap: '10px'
-  },
-  learnMore: {
-    background: 'none',
-    position: 'absolute',
-    bottom: '5px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    color: '#424242',
-
-    '&:hover': {
-      background: 'none',
-      color: 'black',
-    }
   }
 }))
 
@@ -207,55 +190,55 @@ export default function Landing() {
 
   return (
     <>
-      <div className={classes.background}>
-        <div className={`${classes.wrapper} container`}>
-          <div className={classes.headerText}>
-            <div className={classes.headerTextWrapper}>
-              <SugarfansLogo className={classes.headerTextLogo} />
-              <Typography variant="h1" className={classes.headerText1}>
-                {t('header_text1')}
-              </Typography>
-              <Typography variant="h2" className={classes.headerText2}>
-                {t('header_text2')}
-              </Typography>
+      <main>
+        <div className={classes.background}>
+          <div className={`${classes.wrapper} container`}>
+            <div className={classes.headerText}>
+              <div className={classes.headerTextWrapper}>
+                <Typography variant="h1" className={classes.headerText1}>
+                  {t('header_text1')}
+                </Typography>
+                <Typography variant="h2" className={classes.headerText2}>
+                  {t('header_text2')}
+                </Typography>
+              </div>
             </div>
-          </div>
 
-          <FormsWrapper creatorForm={creator} />
+            <FormsWrapper creatorForm={creator} />
 
-        </div>
-        <Button className={classes.learnMore}>Learn more<KeyboardArrowDownIcon/></Button>
-      </div>
-
-      <div className={`container`}>
-        <div className={classes.contentProtection}>
-          <SecurityIcon style={{ fontSize: '99px' }} />
-          <div className={classes.contentProtectionText}>
-            <Typography variant='h2' className={classes.title}>
-              {t('content_protection_title')}
-            </Typography>
-            <Typography variant='body1' className={classes.contentProtectionText1}>
-              {t('content_protection_text1')}
-            </Typography>
-            <Typography variant='body1' className={classes.contentProtectionText2}>
-              {t('content_protection_text2')}
-            </Typography>
-
-          </div>
-          <div className={classes.contentProtectionVideo}>
-            <button className={classes.contentProtectionVideoButton}><PlayCircleIcon />{t('try_it')}</button>
-            <div className={classes.contentProtectionVideoWrapper}>
-              <Image src='/images/drm-video-poster.webp' fill={true} alt='DRM Video' priority quality={100} sizes='(max-width: 512px) 100vw' />
-            </div>
           </div>
         </div>
-      </div>
+
+        <div className={`container`}>
+          <div className={classes.contentProtection}>
+            <SecurityIcon style={{ fontSize: '99px' }} />
+            <div className={classes.contentProtectionText}>
+              <Typography variant='h2' className={classes.title}>
+                {t('content_protection_title')}
+              </Typography>
+              <Typography variant='body1' className={classes.contentProtectionText1}>
+                {t('content_protection_text1')}
+              </Typography>
+              <Typography variant='body1' className={classes.contentProtectionText2}>
+                {t('content_protection_text2')}
+              </Typography>
+
+            </div>
+            <div className={classes.contentProtectionVideo}>
+              <button className={classes.contentProtectionVideoButton}><PlayCircleIcon />{t('try_it')}</button>
+              <div className={classes.contentProtectionVideoWrapper}>
+                <Image src='/images/drm-video-poster.webp' fill={true} alt='DRM Video' priority quality={100} sizes='(max-width: 512px) 100vw' />
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
 
       <footer className={`${classes.footer} container`}>
         <Typography variant='body1'>{t('footer_text')}</Typography>
         <div className={classes.social}>
-          <a><InstagramIcon fontSize='small' /></a>
-          <a><TwitterIcon fontSize='small' /></a>
+          <a><InstagramIcon fontSize='small'/></a>
+          <a><TwitterIcon fontSize='small'/></a>
         </div>
       </footer>
     </>
