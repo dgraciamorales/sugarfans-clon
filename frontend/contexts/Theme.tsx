@@ -94,7 +94,7 @@ const theme = createTheme({
         root: {
           marginLeft: 0,
           marginTop: '4px',
-          fontSize: '13px',
+          fontSize: '14px',
           lineHeight: '15px',
           '&::first-letter': {
             textTransform: 'capitalize'
